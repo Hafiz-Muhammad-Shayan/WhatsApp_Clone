@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/ChatScreen.dart';
 import 'package:whatsapp_clone/listgenerator.dart';
 import 'package:flutter/cupertino.dart';
 class ProfileView extends StatefulWidget {
@@ -10,10 +11,10 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  List<String> friendList = ["Shayan","Aaliyan","Yasir", "Umer", "Fahad", "Hasnain"];
-  List<String> messageList = ["Hello bro!","Kahan ho?","Send me your email", "Are you coming?", "Dinner is ready", "Bye"];
-  List<String> timeList = ["9 : 00 am", "12 : 00 pm", "Yesterday", "Yesterday", "Monday", "Sunday"];
-  @override
+  List<String> friendList = ["Shayan","Aaliyan","Yasir", "Umer", "Fahad", "Hasnain","Shayan","Aaliyan","Yasir", "Umer", "Fahad", "Hasnain"];
+  List<String> messageList = ["Hello bro!","Kahan ho?","Send me your email", "Are you coming?", "Dinner is ready", "Bye","Hello bro!","Kahan ho?","Send me your email", "Are you coming?", "Dinner is ready", "Bye"];
+  List<String> timeList = ["9 : 00 am", "12 : 00 pm", "Yesterday", "Yesterday", "Monday", "Sunday","9 : 00 am", "12 : 00 pm", "Yesterday", "Yesterday", "Monday", "Sunday"];
+   @override
   Widget build(BuildContext context) {
   // double  hight = MediaQuery.of(context).size.height;
   // double  width = MediaQuery.of(context).size.width;
@@ -189,6 +190,15 @@ class _ProfileViewState extends State<ProfileView> {
                         child: Column(
                           children: [
                             ListTile(
+                              onTap: (){
+                                Navigator.push(context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChatScreen(
+                                            name: friendList[index],
+                                        ),
+                                    ),
+                                );
+                              } ,
                               contentPadding: EdgeInsets.zero,
                               leading: CircleAvatar(
                                 radius: 25,
@@ -228,6 +238,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     backgroundColor: Colors.green,
                                     child: Text("3"),
                                   ),
+
 
                                 ],
                               ),
