@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/ChatScreen.dart';
 import 'package:whatsapp_clone/listgenerator.dart';
 import 'package:flutter/cupertino.dart';
 class ProfileView extends StatefulWidget {
+
   const ProfileView({super.key});
 
   @override
@@ -13,11 +16,17 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   List<String> friendList = ["Shayan","Aaliyan","Yasir", "Umer", "Fahad", "Hasnain","Shayan","Aaliyan","Yasir", "Umer", "Fahad", "Hasnain"];
   List<String> messageList = ["Hello bro!","Kahan ho?","Send me your email", "Are you coming?", "Dinner is ready", "Bye","Hello bro!","Kahan ho?","Send me your email", "Are you coming?", "Dinner is ready", "Bye"];
-  List<String> timeList = ["9 : 00 am", "12 : 00 pm", "Yesterday", "Yesterday", "Monday", "Sunday","9 : 00 am", "12 : 00 pm", "Yesterday", "Yesterday", "Monday", "Sunday"];
+  List<String> timeList = ["9 : 00 am", "12 : 00 pm", "Yesterday", "Yesterday", "Monday", "Sunday","9 : 00 am", "12 : 00 pm", "Yesterday", "Yesterday", "Monday","Sunday"];
+
+
    @override
   Widget build(BuildContext context) {
   // double  hight = MediaQuery.of(context).size.height;
   // double  width = MediaQuery.of(context).size.width;
+     final _itemCount = min(
+       friendList.length,
+       min(messageList.length, timeList.length),
+     );
     return SafeArea(
       child: Scaffold(
         body: SizedBox(
@@ -182,6 +191,7 @@ class _ProfileViewState extends State<ProfileView> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: ListView.builder(
+
                     itemCount: friendList.length,
                     itemBuilder: (context, index) {
                       return Container(
@@ -206,14 +216,14 @@ class _ProfileViewState extends State<ProfileView> {
                               ),
                               // tileColor: Colors.red,
                               title: Text(
-                                  friendList[index],
+                                index < friendList.length ? friendList[index] : "no friend",
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),
                               ),
                               subtitle: Text(
-                                messageList[index],
+                                index < messageList.length ? messageList[index] : "no msg",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.grey,
@@ -223,7 +233,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    timeList[index],
+                                    index < timeList.length ? timeList[index] : "--:--",
                                     style: TextStyle(
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold,
